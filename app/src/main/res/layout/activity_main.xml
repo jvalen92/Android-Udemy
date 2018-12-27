@@ -23,7 +23,7 @@
         android:layout_marginTop="62dp"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorPrimaryText"
-        android:text="Intents" />
+        android:text="Intent Call" />
 
     <Button
         android:id="@+id/btn_item2"

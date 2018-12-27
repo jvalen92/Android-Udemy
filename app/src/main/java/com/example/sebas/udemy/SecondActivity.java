@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.media.TimedText;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +52,40 @@ public class SecondActivity extends AppCompatActivity {
                 if (phone != null) {
                     //capture the SDK version and call the right method
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        NewerVersion();
+                       // NewerVersion();
+
+                        //comprobar si ha aceptado los permisos
+
+                        if (checkPermission(Manifest.permission.CALL_PHONE)){
+                            //ha aceptado
+                            Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+phone));
+                            if (ActivityCompat.checkSelfPermission(SecondActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                return;
+                            }
+                            startActivity(intent);
+                        }else {
+                            //primera vez que se le pregunta
+                            if (!shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)){
+                                //no se le ha preguntado
+                                NewerVersion();
+                            } else {
+                                //ha denegado
+
+                                Toast.makeText(SecondActivity.this,"por favor activa el permiso",Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                                intent.setData(Uri.parse("package:"+ getPackageName()));
+
+                                /*LOS FLAGS SIRVEN PARA VOLVER AL ESTADO EN EL QUE ESTABA
+                                  LA APP JUSTO ANTES DE LANZAR EL INTENT */
+
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                startActivity(intent);
+                            }
+                        }
+
                     } else {
                         OlderVersion(phone);
                     }
