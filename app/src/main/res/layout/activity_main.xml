@@ -26,14 +26,22 @@
         android:text="Intent Call" />
 
     <Button
-        android:id="@+id/btn_item2"
+        android:id="@+id/btn_views"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="124dp"
-        android:text="Button" />
+        android:text="Views" />
 
+    <Button
+        android:id="@+id/graphs"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="196dp"
+        android:text="graphs" />
 
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.sebas.udemy;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,12 +13,18 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static android.widget.Toast.makeText;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -30,6 +37,7 @@ public class SecondActivity extends AppCompatActivity {
     ImageButton camera;
 
     private final int PHONE_CALL_CODE = 100;
+    private final int PICTURE_FROM_CAMERA =50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +53,19 @@ public class SecondActivity extends AppCompatActivity {
 
         //Listener para los botones
 
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent Camera
+                Intent camera = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivity(camera);
+            }
+        });
+
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String phone = textPhone.getText().toString();
                 if (phone != null) {
                     //capture the SDK version and call the right method
@@ -71,7 +89,7 @@ public class SecondActivity extends AppCompatActivity {
                             } else {
                                 //ha denegado
 
-                                Toast.makeText(SecondActivity.this,"por favor activa el permiso",Toast.LENGTH_LONG).show();
+                                makeText(SecondActivity.this,"por favor activa el permiso",Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                                 intent.addCategory(Intent.CATEGORY_DEFAULT);
                                 intent.setData(Uri.parse("package:"+ getPackageName()));
@@ -85,7 +103,6 @@ public class SecondActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }
-
                     } else {
                         OlderVersion(phone);
                     }
@@ -97,16 +114,61 @@ public class SecondActivity extends AppCompatActivity {
                 if (checkPermission(Manifest.permission.CALL_PHONE)) {
                     startActivity(intentCall);
                 } else {
-                    Toast.makeText(SecondActivity.this, "You declined this permission", Toast.LENGTH_LONG).show();
+                    makeText(SecondActivity.this, "You declined this permission", Toast.LENGTH_LONG).show();
                 }
-
             }
-
             private void NewerVersion() {
                 //el segundo parametro corresponde al codigo del permiso para hacer una llamada
                 requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PHONE_CALL_CODE);
             }
         });
+
+        //metodo para el navegador web
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = textWeb.getText().toString();
+                if (url != null && !url.isEmpty()){
+                    Intent intentWeb = new Intent();
+                    intentWeb.setAction(Intent.ACTION_VIEW);
+                    intentWeb.setData(Uri.parse("http://"+url));
+                }
+                //Intent para contactos
+                Intent intentContacts = new Intent(Intent.ACTION_VIEW,Uri.parse("content://contacts/people"));
+
+                //Intent para email Rapido
+                String email = "prueba@gmail.com";
+                Intent intentEmail = new Intent(Intent.ACTION_SENDTO,Uri.parse("mailto:"+email));
+
+                //Intent para email completo
+                Intent intentEmailCompleto = new Intent(Intent.ACTION_SEND,Uri.parse(email));
+                intentEmailCompleto.setType("plain/text");
+                intentEmailCompleto.putExtra(Intent.EXTRA_SUBJECT,"Mail´s tittle");
+                intentEmailCompleto.putExtra(Intent.EXTRA_TEXT,"hello world");
+                intentEmailCompleto.putExtra(Intent.EXTRA_EMAIL,new String[]{"prueba@gmail.com","prueba123@gmail.com"});
+                startActivity(Intent.createChooser(intentEmailCompleto,"elige tu correo"));
+
+                //Intent Telefono 2 sin permisos
+                Intent intentCall = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:2226568787"));
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case PICTURE_FROM_CAMERA:
+                if (requestCode == Activity.RESULT_OK ){
+                    String result = data.toUri(0);
+                    Toast.makeText(this,"result"+result,Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(this,"hubo un error",Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
+
     }
 
     @Override
@@ -128,7 +190,7 @@ public class SecondActivity extends AppCompatActivity {
                         startActivity(intentCall);
                     }else {
                         //permiso denegado
-                        Toast.makeText(SecondActivity.this,"You declined this permission",Toast.LENGTH_LONG).show();
+                        makeText(SecondActivity.this,"You declined this permission",Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
@@ -144,4 +206,12 @@ public class SecondActivity extends AppCompatActivity {
         int result = this.checkCallingOrSelfPermission(permission);
         return result == PackageManager.PERMISSION_GRANTED;
     }
+
+
+
+
+
+
+
+
 }

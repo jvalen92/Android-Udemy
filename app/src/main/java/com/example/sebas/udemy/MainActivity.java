@@ -24,5 +24,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button vistas = (Button) findViewById(R.id.btn_views);
+        vistas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Vistas.class);
+                startActivity(intent);
+            }
+        });
+
+        Button graficos = (Button) findViewById(R.id.graphs);
+        graficos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,GraphsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
