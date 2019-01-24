@@ -11,10 +11,12 @@ import com.example.sebas.udemy.Adapters.MyAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vistas extends AppCompatActivity {
+public class ListView_Activity extends AppCompatActivity {
 
     private ListView listView;
     List<String> names = new ArrayList<String>();
+    private int contador=0;
+    MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,47 +31,9 @@ public class Vistas extends AppCompatActivity {
         names.add("Ferndando");
         names.add("Roberto");
         names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
-        names.add("alejandro");
-        names.add("Ferndando");
-        names.add("Roberto");
+
+
+
 
 
 
@@ -86,13 +50,13 @@ public class Vistas extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Vistas.this,"Clicked item "+ names.get(position),Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListView_Activity.this,"Clicked item "+ names.get(position),Toast.LENGTH_SHORT).show();
             }
         });
 
 
         //enlazamos con nuestro adaptador personalizado
-        MyAdapter myAdapter = new MyAdapter (this,R.layout.list_item,names);
+        myAdapter = new MyAdapter (this,R.layout.list_item,names);
         listView.setAdapter(myAdapter);
     }
 }

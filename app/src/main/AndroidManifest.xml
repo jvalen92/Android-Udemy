@@ -19,8 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
-        <activity android:name=".Vistas" />
-        <activity android:name=".GraphsActivity"></activity>
+        <activity android:name=".ListView_Activity" />
+        <activity android:name=".GraphsActivity" />
+        <activity android:name=".GridView_Activity" />
+        <activity android:name=".ListView_Activity$ViewsActivity" />
+        <activity android:name=".Labs.LabViews"></activity>
     </application>
 
 </manifest>

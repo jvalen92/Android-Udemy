@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         vistas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Vistas.class);
+                Intent intent = new Intent(MainActivity.this, ListView_Activity.class);
                 startActivity(intent);
             }
         });
@@ -38,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,GraphsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button grid = (Button) findViewById(R.id.grid);
+        grid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,GridView_Activity.class);
                 startActivity(intent);
             }
         });

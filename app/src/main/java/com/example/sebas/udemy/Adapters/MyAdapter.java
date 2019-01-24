@@ -1,5 +1,4 @@
 package com.example.sebas.udemy.Adapters;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +49,7 @@ public class MyAdapter extends BaseAdapter {
 
             //inflamos la vista que hemos cargado con nuestro layout personalizado
             LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-            convertView =layoutInflater.inflate(R.layout.list_item,null);
+            convertView =layoutInflater.inflate(this.layout,null);
 
             viewHolder = new ViewHolder();
 
@@ -79,6 +78,5 @@ public class MyAdapter extends BaseAdapter {
 
     static class ViewHolder{
         private TextView nameTextView;
-
     }
 }
