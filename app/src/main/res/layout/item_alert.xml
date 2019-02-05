@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/alert_icon"
+        android:layout_width="41dp"
+        android:layout_height="44dp"
+        android:padding="5dp"
+        android:src="@drawable/clock" />
+
+    <TextView
+        android:id="@+id/alert_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_weight="0.5"
+        android:text="tipo de pedido" />
+
+</LinearLayout>

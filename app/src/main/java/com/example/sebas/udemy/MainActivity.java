@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String mensaje = "Hola mundo";
+    final String mensaje = "Hola mundo000000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button recycler = (Button) findViewById(R.id.btn_recycler);
+        recycler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Rview.class);
+                startActivity(intent);
+            }
+        });
 
+        Button alert = (Button) findViewById(R.id.alerts);
+        alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Alertas.class);
+                startActivity(intent);
+            }
+        });
     }
 }

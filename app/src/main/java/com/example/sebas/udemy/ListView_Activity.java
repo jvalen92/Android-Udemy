@@ -1,7 +1,9 @@
 package com.example.sebas.udemy;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,8 +27,6 @@ public class ListView_Activity extends AppCompatActivity {
 
         listView = (ListView)findViewById(R.id.listView);
 
-
-
         names.add("alejandro");
         names.add("Ferndando");
         names.add("Roberto");
@@ -34,30 +34,20 @@ public class ListView_Activity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-        //para hacer uso del adapter de android se debe pasar un contexto,un layout y un ArrayList no  null
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
-
-        //Enlazamos el adaptados con nuestro listView
-        listView.setAdapter(adapter);
-
-        //Listener para ejecutar acciones cuando se seleccione un item
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListView_Activity.this,"Clicked item "+ names.get(position),Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
         //enlazamos con nuestro adaptador personalizado
         myAdapter = new MyAdapter (this,R.layout.list_item,names);
         listView.setAdapter(myAdapter);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View convertView = (View) inflater.inflate(R.layout.list_item,null);
+        builder.setView(convertView);
+        builder.setCancelable(false);
+        ListView listView = (ListView) convertView.findViewById(R.id.listView);
+        builder.setTitle("holi");
+
+
+        builder.show();
     }
 }
 

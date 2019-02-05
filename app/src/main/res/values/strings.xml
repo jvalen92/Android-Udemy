@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Udemy</string>
+    <string name="title_activity_maps">Map</string>
+    
+    <string-array name="types">
+        <item>Express</item>
+        <item>Economico</item>
+        <item>Programado</item>
+    </string-array>
 </resources>

@@ -100,7 +100,6 @@ public class GridView_Activity extends AppCompatActivity {
         menu.setHeaderTitle(names.get(info.position));
 
         menuInflater.inflate(R.menu.context_menu,menu);
-
     }
 
     @Override
@@ -108,8 +107,6 @@ public class GridView_Activity extends AppCompatActivity {
 
         //informacion del objeto seleccionado
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-
         switch (item.getItemId()){
             case R.id.delete_item:
                 //eliminar el objeto seleccionado
