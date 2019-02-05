@@ -14,7 +14,7 @@
         android:id="@+id/alert_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="11dp"
         android:layout_weight="0.5"
         android:text="tipo de pedido" />
 

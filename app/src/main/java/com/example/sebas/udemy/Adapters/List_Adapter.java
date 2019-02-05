@@ -18,12 +18,17 @@ public class List_Adapter extends BaseAdapter {
 
     ArrayList<SingleRow> rows;
     Context context;
+    String [] names;
+    int [] images;
 
     //constructor
     public List_Adapter(Context context, String [] names,int [] images){
         rows = new ArrayList<>();
         this.context=context;
-        Resources res = context.getResources();
+        this.names=names;
+        this.images=images;
+
+        //Resources res = context.getResources();
         //String [] names = res.getStringArray(R.array.types);
         //int [] images = {R.drawable.clock,R.drawable.money,R.drawable.timetable};
 
